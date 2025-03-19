@@ -57,3 +57,43 @@ The checkout command tells Git which branch or commit you want your changes appl
 ## Stage
 
 Git has three main states that your files can reside in: modified, staged, and committed: Modified means that you have changed the file but have not committed it to your database yet. Staged means that you have marked a modified file in its current version to go into your next commit snapshot.
+
+# Commands
+
+There are various commands we use in git, we can easily understand about all the commands that we use by referring through given below link,where they explain about each command with an example.
+
+[Commands](https://www.youtube.com/watch?v=Ez8F0nW6S-w&t=3677s)
+
+## Workflow of GIT
+
+1. Github Repo
+2. Clone
+3. Changes
+4. Add
+5. Commit
+6. Push
+  
+These are the steps we follow in order to edit or change the contents in the Repository.
+
+## Frequently used commands in GIT are as follows:
+
+git add <-filename->(adds info to the repository)
+
+git commit -m "Some message"(adds message)
+
+git push origin main(push command)
+
+git push origin branchname
+
+git branch (to check in which branch we are present)
+
+git checkout -b <-branchname -> (to create a new branch)
+
+git checkout branchname (to switch the branch)
+
+git pull origin main (pull command)
+
+git status (shows the status)
+
+git merge <-branchname-> (to merge two branches)
+
