@@ -1,14 +1,21 @@
-#Project
+# Commands
 
-A brief discription about this project and what is it for
+Frequently used commands are as follows:
 
-##Table of contents
+git add <-filename->(adds info to the repository)
 
-Introduction about Markdown
+git commit -m "Some message"(adds message)
 
-Understanding the concept of Markdown
+git push origin main(push command)
 
-Assignments based on markdown concept
+git push origin branchname
 
+git branch (to check in which branch we are present)
 
+git checkout -b <-branchname -> (to create a new branch)
 
+git checkout branchname (to switch the branch)
+
+git pull origin main (pull command)
+
+git status (shows the status)
