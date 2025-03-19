@@ -41,6 +41,6 @@ Edit the second message
 
 Where you'll face merge conflicts, in order to solve them we get to choose specific options which look like as mentioned below:
 
-! [Merge Conflict example](csforbeginners.png)
+! [Merge Conflict example](mergeconflict.png)
 
 where you can see the options like (Accept Current change|Accept incoming change|Accept both changes|compare changes) in the figure, choose one required option and compare the changes with branches.
