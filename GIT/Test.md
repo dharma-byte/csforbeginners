@@ -17,4 +17,4 @@ Where you'll face merge conflicts, in order to solve them we get to choose speci
 
 ! [Merge Conflict example](csforbeginners.png)
 
-where you can see the options in the figure, choose one required option and compare the changes with branches.
+where you can see the options like (Accept Current change|Accept incoming change|Accept both changes|compare changes) in the figure, choose one required option and compare the changes with branches.
