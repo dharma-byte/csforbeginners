@@ -19,3 +19,6 @@ git checkout branchname (to switch the branch)
 git pull origin main (pull command)
 
 git status (shows the status)
+
+git merge <-branchname-> (to merge two branches)
+
