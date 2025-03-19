@@ -83,7 +83,7 @@ git commit -m "Some message"(adds message)
 
 git push origin main(push command)
 
-git push origin branchname
+git push origin branchname (SUb-branch)
 
 git branch (to check in which branch we are present)
 
@@ -96,4 +96,3 @@ git pull origin main (pull command)
 git status (shows the status)
 
 git merge <-branchname-> (to merge two branches)
-
