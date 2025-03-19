@@ -58,7 +58,7 @@ The checkout command tells Git which branch or commit you want your changes appl
 
 Git has three main states that your files can reside in: modified, staged, and committed: Modified means that you have changed the file but have not committed it to your database yet. Staged means that you have marked a modified file in its current version to go into your next commit snapshot.
 
-# Commands
+## Commands
 
 There are various commands we use in git, we can easily understand about all the commands that we use by referring through given below link,where they explain about each command with an example.
 
@@ -75,7 +75,7 @@ There are various commands we use in git, we can easily understand about all the
   
 These are the steps we follow in order to edit or change the contents in the Repository.
 
-## Frequently used commands in GIT are as follows:
+## Frequently used commands in GIT are as follows
 
 git add <-filename->(adds info to the repository)
 
@@ -95,4 +95,4 @@ git pull origin main (pull command)
 
 git status (shows the status)
 
-git merge <-branchname-> (to merge two branches)
+git merge <-branchname-> (to merge two branches).
