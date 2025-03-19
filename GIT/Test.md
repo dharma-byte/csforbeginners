@@ -14,15 +14,17 @@ How Git handles conflicts:
 
 Resolving conflicts:
 
-1. You need to manually edit the file, identify the conflicting sections, and decide which changes to keep or how to combine them. 
-2. Remove the conflict markers and make the necessary edits. 
-3. Stage the resolved file using git add and commit the changes to finalize the merge. 
+1. You need to manually edit the file, identify the conflicting sections, and decide which changes to keep or how to combine them.
+2. Remove the conflict markers and make the necessary edits.
+3. Stage the resolved file using git add and commit the changes to finalize the merge.
 
 Preventing conflicts:
 
-1. Regularly merge your branches to minimize divergence and potential conflicts. 
-2. Communicate with your team to avoid working on the same files or lines of code simultaneously. 
-3. Review changes before merging to identify potential conflicts early on
+1. Regularly merge your branches to minimize divergence and potential conflicts.
+2. Communicate with your team to avoid working on the same files or lines of code simultaneously.
+3. Review changes before merging to identify potential conflicts early on.
+
+## Example for merge conflict
 
 Create a Repo
 
