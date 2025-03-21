@@ -16,8 +16,12 @@ app.use(express.json());
 
 // GET: List employees
 app.get('/api/employees/list', (req, res) => {
-  res.json(employees);
+  res.json({
+      success: true,
+      employees: employees
+  });
 });
+
 
 // POST: Add employee
 app.post('/api/employees/add', (req, res) => {
@@ -34,23 +38,52 @@ app.post('/api/employees/add', (req, res) => {
 // DELETE: Remove employee
 app.delete('/api/employees/remove', (req, res) => {
   const { id } = req.body;
-  const result = removeEmployee(id);
-  if (result) {
-    res.json({ message: 'Employee removed successfully.' });
-  } else {
-    res.status(404).json({ message: 'Employee not found.' });
+
+  // Check if ID was provided
+  if (!id) {
+      return res.status(400).json({ success: false, message: "Employee ID is required." });
   }
+
+  // Find employee to remove
+  const index = employees.findIndex(emp => emp.id === id);
+
+  // If not found
+  if (index === -1) {
+      return res.status(404).json({ success: false, message: "Employee not found." });
+  }
+
+  // Remove employee
+  employees.splice(index, 1);
+
+  res.json({
+      success: true,
+      message: `Employee with ID ${id} removed.`,
+      employees
+  });
 });
 
 // PATCH: Update employee
 app.patch('/api/employees/update', (req, res) => {
-  const { id, data } = req.body;
-  const result = updateEmployee(id, data);
-  if (result) {
-    res.json({ message: 'Employee updated successfully.' });
-  } else {
-    res.status(404).json({ message: 'Employee not found.' });
+  const { id, name, position } = req.body;
+
+  if (!id) {
+      return res.status(400).json({ success: false, message: "Employee ID is required." });
   }
+
+  const employee = employees.find(emp => emp.id === id);
+
+  if (!employee) {
+      return res.status(404).json({ success: false, message: "Employee not found." });
+  }
+
+  if (name) employee.name = name;
+  if (position) employee.position = position;
+
+  res.json({
+      success: true,
+      message: `Employee with ID ${id} updated successfully.`,
+      employee
+  });
 });
 
 app.listen(PORT, () => {
