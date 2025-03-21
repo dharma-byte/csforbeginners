@@ -1,24 +1,32 @@
+// index.js
+
 const express = require('express');
 const app = express();
-const PORT = 4000;
+const PORT = 3000;
 
-const { employees, addEmployee, removeEmployee, updateEmployee } = require('./data');
+// ✅ Import everything properly
+const {
+  employees,
+  addEmployee,
+  removeEmployee,
+  updateEmployee
+} = require('./data');
 
 app.use(express.json());
 
-// GET: List all employees
+// GET: List employees
 app.get('/api/employees/list', (req, res) => {
   res.json(employees);
 });
 
-// POST: Add new employee
+// POST: Add employee
 app.post('/api/employees/add', (req, res) => {
   const newEmployee = req.body;
   addEmployee(newEmployee);
   res.json({ message: 'Employee added successfully.', employee: newEmployee });
 });
 
-// DELETE: Remove employee by ID
+// DELETE: Remove employee
 app.delete('/api/employees/remove', (req, res) => {
   const { id } = req.body;
   const result = removeEmployee(id);
@@ -29,7 +37,7 @@ app.delete('/api/employees/remove', (req, res) => {
   }
 });
 
-// PATCH: Update employee data by ID
+// PATCH: Update employee
 app.patch('/api/employees/update', (req, res) => {
   const { id, data } = req.body;
   const result = updateEmployee(id, data);
