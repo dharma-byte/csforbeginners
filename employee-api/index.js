@@ -39,7 +39,7 @@ app.post('/api/employees/add', (req, res) => {
 app.delete('/api/employees/remove', (req, res) => {
   const { id } = req.body;
 
-  // Check if ID was provided
+  // Check if ID was provided or not
   if (!id) {
       return res.status(400).json({ success: false, message: "Employee ID is required." });
   }
