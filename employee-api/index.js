@@ -21,15 +21,9 @@ app.get('/api/employees/list', (req, res) => {
 
 // POST: Add employee
 app.post('/api/employees/add', (req, res) => {
-  const employee = req.body;
-
-  if (!employee.name || !employee.position) {
-    return res.status(400).json({ error: 'Missing employee name or position' });
-  }
-
-  console.log('Received new employee:', employee);
-
-  res.status(200).json({ message: 'Employee added successfully', employee });
+  const newEmployee = req.body;
+  addEmployee(newEmployee);
+  res.json({ message: 'Employee added successfully.', employee: newEmployee });
 });
 
 // DELETE: Remove employee
