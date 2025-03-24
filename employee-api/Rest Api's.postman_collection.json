@@ -43,7 +43,7 @@
 			"name": "post command",
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "no auth"
 				},
 				"method": "POST",
 				"header": [],
@@ -76,7 +76,7 @@
 			"name": "delete command",
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "no auth"
 				},
 				"method": "DELETE",
 				"header": [],
@@ -109,7 +109,7 @@
 			"name": "Patch command",
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "no auth"
 				},
 				"method": "PATCH",
 				"header": [],
