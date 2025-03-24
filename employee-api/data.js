@@ -1,35 +1,18 @@
-// data.js
+// db.js
+const sqlite3 = require('sqlite3').verbose();
 
-let employees = [
-  { id: 1, name: "Alice", role: "Developer" },
-  { id: 2, name: "Bob", role: "Designer" }
-];
+const db = new sqlite3.Database('./employees.db', (err) => {
+  if (err) return console.error('Error opening DB:', err.message);
+  console.log('Connected to SQLite database.');
+});
 
-function addEmployee(employee) {
-  employees.push(employee);
-}
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS employees (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    position TEXT NOT NULL,
+    salary REAL NOT NULL
+  )`);
+});
 
-function removeEmployee(id) {
-  const index = employees.findIndex(emp => emp.id === id);
-  if (index !== -1) {
-    employees.splice(index, 1);
-    return true;
-  }
-  return false;
-}
-
-function updateEmployee(id, data) {
-  const employee = employees.find(emp => emp.id === id);
-  if (employee) {
-    Object.assign(employee, data);
-    return true;
-  }
-  return false;
-}
-
-module.exports = {
-  employees,
-  addEmployee,
-  removeEmployee,
-  updateEmployee
-};
+module.exports = db;
