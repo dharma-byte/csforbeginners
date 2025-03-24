@@ -1,43 +1,45 @@
-// server.js
+// index.js
+
 const express = require('express');
-const bodyParser = require('body-parser');
-const db = require('./db');
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
-app.use(bodyParser.json());
+// ✅ Import everything properly
+const {
+  employees,
+  addEmployee,
+  removeEmployee,
+  updateEmployee
+} = require('./data');
 
-// GET /api/employees/list
+app.use(express.json());
+
+// GET: List employees
 app.get('/api/employees/list', (req, res) => {
-  db.all('SELECT * FROM employees', [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
+  res.json({
+      success: true,
+      employees: employees
   });
 });
 
-// POST /api/employees/add
-app.post('/api/employees/add', (req, res) => {
-  const { name, position, salary } = req.body;
-  if (!name || !position || !salary) {
-    return res.status(400).json({ error: 'All fields are required' });
-  }
-  db.run(
-    `INSERT INTO employees (name, position, salary) VALUES (?, ?, ?)`,
-    [name, position, salary],
-    function (err) {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ id: this.lastID, name, position, salary });
-    }
-  );
-});
 
-// DELETE /api/employees/remove
+// POST: Add employee
+app.post('/api/employees/add', (req, res) => {
+  const employee = req.body;
+
+  if (!employee.name || !employee.position) {
+    return res.status(400).json({ error: 'Missing employee name or position' });
+  }
+
+  console.log('Received new employee:', employee);
+
+  res.status(200).json({ message: 'Employee added successfully', employee });
+});
+// DELETE: Remove employee
 app.delete('/api/employees/remove', (req, res) => {
   const { id } = req.body;
-  if (!id) return res.status(400).json({ error: 'ID is required' });
 
-<<<<<<< HEAD
-  // Check if ID was provided or not
+  // Check if ID was provided or
   if (!id) {
       return res.status(400).json({ success: false, message: "Employee ID is required." });
   }
@@ -57,32 +59,33 @@ app.delete('/api/employees/remove', (req, res) => {
       success: true,
       message: `Employee with ID ${id} removed.`,
       employees
-=======
-  db.run(`DELETE FROM employees WHERE id = ?`, [id], function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-    if (this.changes === 0) return res.status(404).json({ error: 'Employee not found' });
-    res.json({ message: 'Employee removed' });
->>>>>>> b905f376fc353b7c01d6e20574bda7906f185c8d
   });
 });
 
-// PATCH /api/employees/update
+// PATCH: Update employee
 app.patch('/api/employees/update', (req, res) => {
-  const { id, name, position, salary } = req.body;
-  if (!id) return res.status(400).json({ error: 'ID is required' });
+  const { id, name, position } = req.body;
 
-  db.run(
-    `UPDATE employees SET name = ?, position = ?, salary = ? WHERE id = ?`,
-    [name, position, salary, id],
-    function (err) {
-      if (err) return res.status(500).json({ error: err.message });
-      if (this.changes === 0) return res.status(404).json({ error: 'Employee not found' });
-      res.json({ message: 'Employee updated' });
-    }
-  );
+  if (!id) {
+      return res.status(400).json({ success: false, message: "Employee ID is required." });
+  }
+
+  const employee = employees.find(emp => emp.id === id);
+
+  if (!employee) {
+      return res.status(404).json({ success: false, message: "Employee not found." });
+  }
+
+  if (name) employee.name = name;
+  if (position) employee.position = position;
+
+  res.json({
+      success: true,
+      message: `Employee with ID ${id} updated successfully.`,
+      employee
+  });
 });
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
