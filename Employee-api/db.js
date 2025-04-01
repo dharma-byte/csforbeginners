@@ -8,7 +8,7 @@ const db = new sqlite3.Database('./employees.db', (err) => {
 
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS employees (
-    id INTEGER PRIMARY KEY AUTO INCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     position TEXT NOT NULL,
     salary REAL NOT NULL
