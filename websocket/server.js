@@ -9,7 +9,7 @@ server.on('connection', socket => {
 
     socket.on('message', message => {
         console.log(`Received: ${message}`);
-        socket.send(`Echo: ${message}`);
+        socket.send(`Echo: hello user`);
     });
 
     socket.on('close', () => console.log('Client disconnected'));
