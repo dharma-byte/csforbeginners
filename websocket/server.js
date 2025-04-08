@@ -8,8 +8,9 @@ server.on('connection', socket => {
     console.log('Client connected');
 
     socket.on('message', message => {
-        console.log(`Received: ${message}`);
-        socket.send(`Echo: ${message}`);
+        console.log(`Received:`, message);
+        const customResponse = "Got your message!";
+        socket.send(customResponse);
     });
 
     socket.on('close', () => console.log('Client disconnected'));
