@@ -8,7 +8,7 @@ server.on('connection', socket => {
 
     let count = 1;
     const interval = setInterval(() => {
-        if (count <= 100) {
+        if (count <= 200) {
             socket.send(count.toString());
             console.log("Sent:", count);
             count++;
