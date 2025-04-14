@@ -1,4 +1,15 @@
 // (server.js)
+/**
+ * server.js
+ * 
+ * A simple Express server providing RESTful API endpoints to manage employees.
+ * 
+ * Endpoints:
+ * - GET    /api/employees/list     - Get all employees
+ * - POST   /api/employees/add      - Add a new employee
+ * - DELETE /api/employees/remove   - Remove an employee by ID
+ * - PATCH  /api/employees/update   - Update employee details
+ */
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db');
@@ -7,6 +18,13 @@ const PORT = 7000;
 
 app.use(bodyParser.json());
 
+/**
+ * @route GET /api/employees/list
+ * @description Retrieves a list of all employees.
+ * @returns {Object[]} 200 - Array of employee records
+ * @returns {Object}   500 - Internal server error
+ */
+
 // GET /api/employees/list
 app.get('/api/employees/list', (req, res) => {
   db.all('SELECT * FROM employees', [], (err, rows) => {
@@ -14,6 +32,17 @@ app.get('/api/employees/list', (req, res) => {
     res.json(rows);
   });
 });
+
+/**
+ * @route POST /api/employees/add
+ * @description Adds a new employee to the database.
+ * @param {string} name - Employee name
+ * @param {string} position - Job title
+ * @param {number} salary - Employee salary
+ * @returns {Object} 200 - Created employee with ID
+ * @returns {Object} 400 - Missing required fields
+ * @returns {Object} 500 - Internal server error
+ */
 
 // POST /api/employees/add
 app.post('/api/employees/add', (req, res) => {
@@ -31,6 +60,16 @@ app.post('/api/employees/add', (req, res) => {
   );
 });
 
+/**
+ * @route DELETE /api/employees/remove
+ * @description Deletes an employee by ID.
+ * @param {number} id - Employee ID
+ * @returns {Object} 200 - Deletion success message
+ * @returns {Object} 400 - Missing ID
+ * @returns {Object} 404 - Employee not found
+ * @returns {Object} 500 - Internal server error
+ */
+
 // DELETE /api/employees/remove
 app.delete('/api/employees/remove', (req, res) => {
   const { id } = req.body;
@@ -42,6 +81,19 @@ app.delete('/api/employees/remove', (req, res) => {
     res.json({ message: 'Employee removed' });
   });
 });
+
+/**
+ * @route PATCH /api/employees/update
+ * @description Updates an employee's information.
+ * @param {number} id - Employee ID
+ * @param {string} [name] - New name
+ * @param {string} [position] - New job title
+ * @param {number} [salary] - New salary
+ * @returns {Object} 200 - Update success message
+ * @returns {Object} 400 - Missing ID
+ * @returns {Object} 404 - Employee not found
+ * @returns {Object} 500 - Internal server error
+ */
 
 // PATCH /api/employees/update
 app.patch('/api/employees/update', (req, res) => {
@@ -59,7 +111,9 @@ app.patch('/api/employees/update', (req, res) => {
   );
 });
 
-// Start server
+/**
+ * Starts the Express server on the specified port.
+ */
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
