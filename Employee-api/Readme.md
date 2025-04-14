@@ -29,3 +29,34 @@
 7.Click "Send" to test.
 
 8.It will generate response.
+
+
+# Keywords to learn and master:
+
+1. ## HTTP:
+
+[Watch the video](https://www.youtube.com/watch?v=_szgZM1sDiM)
+
+2. ## HTTPS:
+
+[Watch the video](https://www.youtube.com/watch?v=vyv5f57kGu8)
+
+3. ## TCP:
+
+[Watch the video](https://www.youtube.com/watch?v=WqV0TRTvvqA&t=29s)
+
+4. ## UDP:
+
+[Watch the video](https://www.youtube.com/watch?v=EijM6WO9kno)
+
+5. ## Differences btw http and https:
+
+ [Watch the video](https://www.youtube.com/watch?v=eWdPWSBKxso)
+
+6. ## Differences btw Tcp and Udp:
+
+[Watch the video](https://www.youtube.com/watch?v=KY_Bqp2xDVc)
+
+7. ## Socket
+
+[Watch the video](https://www.youtube.com/watch?v=-utm73RxNo4)
