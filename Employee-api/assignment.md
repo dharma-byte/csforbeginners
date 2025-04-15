@@ -19,3 +19,24 @@ Complete this assignment using commands like:
     3.POST - adds new data in the employee data.
 
     4.DELETE - remove the data from the employee data.
+
+# Evaluation Criteria
+
+## Keypoints to remember:
+    
+    1.Use the following API commands:
+        PATCH
+        GET
+        POST
+        DELETE
+
+    2. Use Sqlite for data storage.
+
+    3. Create one nodejs project and create the following apis:
+
+        Get /api/employees/list,
+        post /api/employees/add,
+        delete /api/employees/remove,
+        patch /api/employees/update.
+    
+    4. Complete this task in postman or bruno application.
