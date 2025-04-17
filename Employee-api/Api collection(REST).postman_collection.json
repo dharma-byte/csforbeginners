@@ -1,22 +1,25 @@
 {
 	"info": {
-		"_postman_id": "496ca57f-db9b-4bb8-b4f0-b703f5a95580",
-		"name": "Rest Api's",
+		"_postman_id": "114245ed-c41a-4ea4-9c94-777604f73aa2",
+		"name": "Api collection(REST)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43255824"
 	},
 	"item": [
 		{
-			"name": "get command",
+			"name": "http://localhost:3000/api/employees/list",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Alice Johnson\",\r\n  \"position\": \"Senior Software Engineer\",\r\n  \"salary\": 98000\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -24,12 +27,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7000/api/employees/list",
+					"raw": "http://localhost:3000/api/employees/list",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7000",
+					"port": "3000",
 					"path": [
 						"api",
 						"employees",
@@ -40,16 +43,16 @@
 			"response": []
 		},
 		{
-			"name": "post command",
+			"name": "http://localhost:3000/api/employees/add",
 			"request": {
 				"auth": {
-					"type": "no auth"
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n  \"id\": 2,\r\n  \"name\": \"Alice Johnson\",\r\n  \"position\": \"Senior Software Engineer\",\r\n  \"salary\": 98000\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -57,12 +60,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7000/api/employees/add",
+					"raw": "http://localhost:3000/api/employees/add",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7000",
+					"port": "3000",
 					"path": [
 						"api",
 						"employees",
@@ -73,16 +76,16 @@
 			"response": []
 		},
 		{
-			"name": "delete command",
+			"name": "http://localhost:3000/api/employees/remove",
 			"request": {
 				"auth": {
-					"type": "no auth"
+					"type": "noauth"
 				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": 1\r\n}",
+					"raw": "{\r\n  \"id\": 2,\r\n  \"name\": \"Alice Johnson\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -90,12 +93,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7000/api/employees/remove",
+					"raw": "http://localhost:3000/api/employees/remove",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7000",
+					"port": "3000",
 					"path": [
 						"api",
 						"employees",
@@ -106,16 +109,16 @@
 			"response": []
 		},
 		{
-			"name": "Patch command",
+			"name": "http://localhost:3000/api/employees/update",
 			"request": {
 				"auth": {
-					"type": "no auth"
+					"type": "noauth"
 				},
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": 2,\r\n  \"name\": \"Jane Smith\",\r\n  \"position\": \"Senior Developer\",\r\n  \"salary\": 100000\r\n}",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Alice Johnson\",\r\n  \"position\": \"Senior Software Engineer\",\r\n  \"salary\": 98000\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -123,12 +126,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7000/api/employees/update",
+					"raw": "http://localhost:3000/api/employees/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "7000",
+					"port": "3000",
 					"path": [
 						"api",
 						"employees",
