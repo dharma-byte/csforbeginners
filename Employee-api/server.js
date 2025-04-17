@@ -1,22 +1,21 @@
-// (server.js)
+// server.js
 /**
- * server.js
- * 
  * A simple Express server providing RESTful API endpoints to manage employees.
- * 
+ *
  * Endpoints:
  * - GET    /api/employees/list     - Get all employees
  * - POST   /api/employees/add      - Add a new employee
- * - DELETE /api/employees/remove   - Remove an employee by ID
+ * - DELETE /api/employees/remove   - Remove an employee by ID and name
  * - PATCH  /api/employees/update   - Update employee details
  */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db');
 const app = express();
-const PORT = 7000;
+const PORT = 3000;
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 /**
  * @route GET /api/employees/list
@@ -46,19 +45,20 @@ app.get('/api/employees/list', (req, res) => {
 
 // POST /api/employees/add
 app.post('/api/employees/add', (req, res) => {
-  const { name, position, salary } = req.body;
-  if (!name || !position || !salary) {
+  const { id, name, position, salary } = req.body;
+  if (!id || !name || !position || !salary) {
     return res.status(400).json({ error: 'All fields are required' });
   }
   db.run(
-    `INSERT INTO employees (name, position, salary) VALUES (?, ?, ?)`,
-    [name, position, salary],
+    `INSERT INTO employees (id, name, position, salary) VALUES (?, ?, ?, ?)`,
+    [id, name, position, salary],
     function (err) {
       if (err) return res.status(500).json({ error: err.message });
-      res.json({ id: this.lastID, name, position, salary });
+      res.json({ id, name, position, salary });
     }
   );
 });
+
 
 /**
  * @route DELETE /api/employees/remove
@@ -72,10 +72,10 @@ app.post('/api/employees/add', (req, res) => {
 
 // DELETE /api/employees/remove
 app.delete('/api/employees/remove', (req, res) => {
-  const { id } = req.body;
-  if (!id) return res.status(400).json({ error: 'ID is required' });
+  const { id, name } = req.body;
+  if (!id || !name) return res.status(400).json({ error: 'ID and Name are required' });
 
-  db.run(`DELETE FROM employees WHERE id = ?`, [id], function (err) {
+  db.run(`DELETE FROM employees WHERE id = ? AND name = ?`, [id, name], function (err) {
     if (err) return res.status(500).json({ error: err.message });
     if (this.changes === 0) return res.status(404).json({ error: 'Employee not found' });
     res.json({ message: 'Employee removed' });
@@ -98,11 +98,11 @@ app.delete('/api/employees/remove', (req, res) => {
 // PATCH /api/employees/update
 app.patch('/api/employees/update', (req, res) => {
   const { id, name, position, salary } = req.body;
-  if (!id) return res.status(400).json({ error: 'ID is required' });
+  if (!id || !name) return res.status(400).json({ error: 'ID and Name are required' });
 
   db.run(
-    `UPDATE employees SET name = ?, position = ?, salary = ? WHERE id = ?`,
-    [name, position, salary, id],
+    `UPDATE employees SET position = ?, salary = ? WHERE id = ? AND name = ?`,
+    [position, salary, id, name],
     function (err) {
       if (err) return res.status(500).json({ error: err.message });
       if (this.changes === 0) return res.status(404).json({ error: 'Employee not found' });
@@ -112,7 +112,7 @@ app.patch('/api/employees/update', (req, res) => {
 });
 
 /**
- * Starts the Express server on the specified port.
+ * Start the server
  */
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

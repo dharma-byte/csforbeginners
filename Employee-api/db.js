@@ -1,38 +1,33 @@
-// (db.js)
-/**
- * db.js
- * 
- * Initializes and exports the SQLite database connection.
- * Creates an "employees" table if it does not already exist.
- */
+// db.js
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
-/**
- * Connect to the SQLite database.
- * If the database file doesn't exist, it will be created automatically.
- */
-
-const db = new sqlite3.Database('./employees.db', (err) => {
-  if (err) return console.error('Error opening DB:', err.message);
-  console.log('Connected to SQLite database.');
+// Connect to the SQLite database (or create it if it doesn't exist)
+const db = new sqlite3.Database(path.resolve(__dirname, 'employees.db'), (err) => {
+  if (err) {
+    console.error('Error opening database:', err.message);
+  } else {
+    console.log('Connected to the employees database.');
+  }
 });
 
-/**
- * Create the "employees" table if it doesn't already exist.
- * Fields:
- * - id: Auto-incremented primary key
- * - name: Employee's name (string, required)
- * - position: Job title (string, required)
- * - salary: Salary (real number, required)
- */
-
+// Create the employees table with a composite primary key (id + name)
 db.serialize(() => {
-  db.run(`CREATE TABLE IF NOT EXISTS employees (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    position TEXT NOT NULL,
-    salary REAL NOT NULL
-  )`);
+  db.run(`
+    CREATE TABLE IF NOT EXISTS employees (
+      id INTEGER,
+      name TEXT,
+      position TEXT,
+      salary REAL,
+      PRIMARY KEY (id, name)
+    )
+  `, (err) => {
+    if (err) {
+      console.error('Error creating employees table:', err.message);
+    } else {
+      console.log('Employees table is ready.');
+    }
+  });
 });
 
 module.exports = db;
